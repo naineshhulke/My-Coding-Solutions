@@ -1,10 +1,11 @@
 #include<bits/stdc++.h>
 using namespace std;
+#define lli long long int
 int main()
 {
     int t,n;
     long temp;
-    long long int k;
+    lli k;
     cin>>t;
     while(t--)
     {
@@ -19,26 +20,16 @@ int main()
         {
             a[(int)n/2]=0;
         }
-        if((k/n)%3==1)
-        {
-            reverse(a.begin(),a.end());
-            for(int j=0;j<n/2;j++)
-            {
-                a[j]=a[j]^a[n-j-1];
-            }
-        }
-        else if((k/n)%3==2)
-        {
-            reverse(a.begin(),a.end());
-            for(int j=n/2;j<n;j++)
-            {
-                a[j]=a[j]^a[n-j-1];
-            }
-        }
-        for(int i = 0;i<k%(long long)n;i++)
-        {
-            a[i]=a[i]^a[n-i-1];
-        }
+        
+        while(k >= 3*n)
+		    k -= 3*n;
+ 
+		for(int i=0;i<k;i++)
+		{
+			lli p = a[i % n];
+			lli q = a[n - (i%n) - 1];
+			a[i%n] = p ^ q;
+		}
         for(auto it = a.begin();it!=a.end();it++)
         {
             cout<<*it<<' ';
