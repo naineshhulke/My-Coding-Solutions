@@ -1,6 +1,8 @@
 #include<bits/stdc++.h>
 using namespace std;
 #define pii pair<int, int>
+#define pb push_back
+#define mp make_pair 
 
 #define MAX 46656
 #define LMT 216
@@ -43,11 +45,11 @@ void primeFactors(int num)
             num = num / prime;
         }
         if (expo>0)
-            factors.push_back(make_pair(prime, expo));
+            factors.pb(mp(prime, expo));
     }
 
     if ( num >= 2)
-        factors.push_back(make_pair(num, 1));
+        factors.pb(mp(num, 1));
 
 }
 
@@ -57,7 +59,7 @@ void setDivisors(int n, int i) {
     for (j = i; j<factors.size(); j++) {
         x = factors[j].first * n;
         for (k = 0; k<factors[j].second; k++) {
-            divisors.push_back(x);
+            divisors.pb(x);
             setDivisors(x, j + 1);
             x *= factors[j].first;
         }
@@ -73,7 +75,7 @@ int main()
         int n;
         cin>>n;
         vector< long > a(n);
-        map< long,long > m;
+        unordered_map< long,long > m;
         long temp,ans=0,count=0;
         for(int i=0;i<n;i++)
         {
@@ -89,7 +91,7 @@ int main()
             }
             primeFactors(a[i]);
             setDivisors(1, 0);
-            divisors.push_back(1);
+            divisors.pb(1);
             for (int j = 0; j < divisors.size(); j++) {
                 m[divisors[j]]++; 
             }

@@ -8,20 +8,17 @@ bool check(int n)
         if((n%i)==0)
         {
             while((n%i)==0)
-            {
                 n/=i;
-            }
+            
             count++;
             if(count==2)
             {
                 if(n==1)
-                {
-                    return true;
-                }
+                return true;
+                
                 else
-                {
-                    return false;
-                }
+                return false;
+                
             }
         }
     }
@@ -34,9 +31,8 @@ int main()
     for(int i=2;i<=n;i++)
     {
         if(check(i))
-        {
-            ans++;
-        }
+        ans++;
+        
     }
     cout<<ans;
     return 0;
